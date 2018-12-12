@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:seven_deadly_sins/constants.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 
 class ModalDialog extends Dialog {
   /// Custom modal dialog
   const ModalDialog({
     Key key,
-    this.artworkCode,
     this.actions,
     this.semanticLabel,
-    this.context
+    this.context,
+    this.analytics,
+    this.artwork
   }) : super(key: key);
 
   /*
   * Variables
   */
 
-  final BuildContext context;
+  final Artwork artwork;
 
-  /// The QR code scanned
-  final String artworkCode;
+  final BuildContext context;
 
   /// The (optional) set of actions that are displayed at the bottom of the
   /// dialog.
@@ -36,12 +37,20 @@ class ModalDialog extends Dialog {
   /// from [MaterialLocalizations.alertDialogLabel].
   final String semanticLabel;
 
+  final FirebaseAnalytics analytics;
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> children = <Widget>[];
     String label = semanticLabel;
 
-    if (artworkCode != null && artworkCode.isNotEmpty) {
+    if (artwork != null) {
+      if (analytics != null){
+        print('analytics != null');
+        _sendAnalyticsEvent();
+      } else {
+        print('analytics == null');
+      }
       children.add(_buildTitleContainer());
       children.add(_buildContentImage());
       children.add(_buildImageShadow());
@@ -57,6 +66,7 @@ class ModalDialog extends Dialog {
 //    }
 
     Widget dialogChild = Container(
+      width: MediaQuery.of(context).size.width*1.0,
       color: dialogBackgroundColor,
       child: new Column(
         children: children,
@@ -67,18 +77,60 @@ class ModalDialog extends Dialog {
       dialogChild =
           new Semantics(namesRoute: true, label: label, child: dialogChild);
 
-    return new Dialog(child: dialogChild);
+//    return new Dialog(
+//      child: dialogChild,
+//    );
+
+    RoundedRectangleBorder shape = RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(16.0),
+        topRight: Radius.circular(16.0),
+        bottomLeft: Radius.circular(2.0),
+        bottomRight: Radius.circular(2.0),
+      ),
+    );
+
+    return AnimatedPadding(
+      padding: MediaQuery.of(context).viewInsets + const EdgeInsets.symmetric(horizontal: 32.0, vertical: 24.0),
+      duration: insetAnimationDuration,
+      curve: insetAnimationCurve,
+      child: MediaQuery.removeViewInsets(
+        removeLeft: true,
+        removeTop: true,
+        removeRight: true,
+        removeBottom: true,
+        context: context,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: 280.0),
+            child: Material(
+              elevation: 24.0,
+              color: dialogBackgroundColor,
+              type: MaterialType.card,
+              child: dialogChild,
+              shape: shape,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Container _buildTitleContainer() {
+    final TextStyle dialogTitleTextTheme = new TextStyle(
+      fontSize: 32.0,
+      fontWeight: FontWeight.normal,
+      fontStyle: FontStyle.italic,
+      color: artwork.color,
+    );
     return new Container(
       color: dialogBackgroundColor,
       padding: modalTitlePadding,
       child: Container(
         color: dialogBackgroundColor,
         alignment: Alignment.center,
-        child: _textWithShadow(
-            _getArtworkTitle(), dialogTitleTextTheme, Colors.white.withOpacity(0.35)),
+        child: _homeSubtitleText(
+            artwork.title, dialogTitleTextTheme),
       ),
     );
   }
@@ -90,14 +142,14 @@ class ModalDialog extends Dialog {
           Navigator.push(context, MaterialPageRoute(builder: (context) => ImageDetailView()));
         },
         child: new Container(
-          child: _getArtworkImage(),
+          child: artwork.image,
         )
     );
   }
 
   Container _buildImageShadow() {
     return new Container(
-      color: softRed.withAlpha(50),
+      color: artwork.color.withAlpha(50),
       height: 1.0,
     );
   }
@@ -107,147 +159,76 @@ class ModalDialog extends Dialog {
       flex: 1,
       child: new SingleChildScrollView(
         padding: modalContentPadding,
-        child: new Text(
-          _getArtworkContent(),
-          style: normal,
+        child: new Column(
+          children: <Widget>[
+            _buildSubtitle(),
+            _buildDefinition(),
+            _buildDescription()
+          ],
         ),
       ),
     );
   }
 
-  /*
-  * Build a ClipRect widget with a shadowed text
-  */
-  ClipRect _textWithShadow(
-      String text, TextStyle textStyle, Color shadowColor) {
-    return new ClipRect(
-      child: new Stack(
-        children: [
-          new Positioned(
-            top: 0.5,
-            left: 0.5,
-            child: new Text(
-              text,
-              style: textStyle.copyWith(color: shadowColor),
-              textAlign: TextAlign.center,
-              softWrap: true,
-              maxLines: 1,
-            ),
-          ),
-          new Text(
-            text,
-            style: textStyle,
-            textAlign: TextAlign.center,
-            softWrap: true,
-            maxLines: 1,
-          ),
-        ],
+  Container _buildSubtitle(){
+    return Container(
+      padding: EdgeInsets.only(bottom: 16.0),
+      child: Text(
+        artwork.subtitle,
+        textAlign: TextAlign.center,
+        style: artworkSubtitleTextTheme,
       ),
     );
   }
 
+  Container _buildDefinition(){
+    return Container(
+      padding: EdgeInsets.only(bottom: 16.0),
+      child: Text(
+        artwork.definition,
+        textAlign: TextAlign.center,
+        style: artworkDefinitionTextTheme,
+      ),
+    );
+  }
 
-  ///
-  /// Returns artwork title
-  ///
-  String _getArtworkTitle() {
-    String title = "";
-    switch (artworkCode){
-      case superbiaCode:
-        title = superbiaTitle;
-        break;
-      case accidiaCode:
-        title = accidiaTitle;
-        break;
-      case iraCode:
-        title = iraTitle;
-        break;
-      case golaCode:
-        title = golaTitle;
-        break;
-      case lussuriaCode:
-        title = lussuriaTitle;
-        break;
-      case avariziaCode:
-        title = avariziaTitle;
-        break;
-      case invidiaCode:
-        title = invidiaTitle;
-        break;
-      default:
-        title = errorTitle;
-        break;
-    }
-    return title;
+  Container _buildDescription(){
+    return Container(
+      padding: EdgeInsets.only(bottom: 16.0),
+      child: Text(
+        artwork.description,
+        textAlign: TextAlign.center,
+        style: artworkDescriptionTextTheme,
+      )
+    );
   }
 
   ///
-  /// Returns artwork content
+  ///  Build the title Text widget
   ///
-  String _getArtworkContent() {
-    String content = "";
-    switch (artworkCode){
-      case superbiaCode:
-        content = superbiaContent;
-        break;
-      case accidiaCode:
-        content = accidiaContent;
-        break;
-      case iraCode:
-        content = iraContent;
-        break;
-      case golaCode:
-        content = golaContent;
-        break;
-      case lussuriaCode:
-        content = lussuriaContent;
-        break;
-      case avariziaCode:
-        content = avariziaContent;
-        break;
-      case invidiaCode:
-        content = invidiaContent;
-        break;
-      default:
-        content = errorContent;
-        break;
-    }
-    return content;
+  Text _homeSubtitleText(String text, TextStyle textStyle) {
+    return Text(
+      text,
+      style: textStyle,
+      textAlign: TextAlign.center,
+      softWrap: true,
+    );
   }
 
-  ///
-  /// Returns artwork image
-  ///
-  Image _getArtworkImage() {
-    Image image;
-    switch (artworkCode){
-      case superbiaCode:
-        image = superbiaImage;
-        break;
-      case accidiaCode:
-        image = accidiaImage;
-        break;
-      case iraCode:
-        image = iraImage;
-        break;
-      case golaCode:
-        image = golaImage;
-        break;
-      case lussuriaCode:
-        image = lussuriaImage;
-        break;
-      case avariziaCode:
-        image = avariziaImage;
-        break;
-      case invidiaCode:
-        image = invidiaImage;
-        break;
-      default:
-        image = logoImage;
-        break;
-    }
-    return image;
+/*
+* Analytics !!!
+*/
+
+  Future<void> _sendAnalyticsEvent() async {
+    await analytics.logEvent(
+      name: 'modal_dialog_open',
+      parameters: <String, dynamic>{
+        'artworkTitle': artwork.title,
+      },
+    );
+    print('logEvent succeeded');
   }
+
 }
 
 class ImageDetailView extends StatelessWidget {
@@ -266,5 +247,6 @@ class ImageDetailView extends StatelessWidget {
       ),
     );
   }
+
 }
 
