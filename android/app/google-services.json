@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1086781333570",
+    "firebase_url": "https://seven-deadly-sins-9800e.firebaseio.com",
+    "project_id": "seven-deadly-sins-9800e",
+    "storage_bucket": "seven-deadly-sins-9800e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086781333570:android:b1ab90049515e4fe",
+        "android_client_info": {
+          "package_name": "com.mrsyn.sevendeadlysins"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1086781333570-4onuuh37f1qifli2af4rl3q4b9296vi6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKUvoxXAyZ6KdAPqYy_VgFUI4Cli0pWMU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
