@@ -185,14 +185,14 @@ const String errorContent = "Errore";
 * Assets
 */
 
-final logoImage = new Image.asset("assets/logo.jpg");
-final golaImage = new Image.asset("assets/gola.jpg");
-final invidiaImage = new Image.asset("assets/invidia.jpg");
-final avariziaImage = new Image.asset("assets/avarizia.jpg");
-final lussuriaImage = new Image.asset("assets/lussuria.png");
-final accidiaImage = new Image.asset("assets/accidia.jpg");
-final superbiaImage = new Image.asset("assets/superbia.jpg");
-final iraImage = new Image.asset("assets/ira.jpg");
+final logoImage = "assets/logo.jpg";
+final golaImage = "assets/gola.jpg";
+final invidiaImage = "assets/invidia.jpg";
+final avariziaImage = "assets/avarizia.jpg";
+final lussuriaImage = "assets/lussuria.png";
+final accidiaImage = "assets/accidia.jpg";
+final superbiaImage = "assets/superbia.jpg";
+final iraImage = "assets/ira.jpg";
 
 /*
 *  Artworks
@@ -276,7 +276,7 @@ class Artwork {
   String definition;
   String description;
   Color color;
-  Image image;
+  String image;
 
 
   Artwork(

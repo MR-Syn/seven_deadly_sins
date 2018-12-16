@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:seven_deadly_sins/constants.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 
 class ModalDialog extends Dialog {
@@ -50,20 +51,12 @@ class ModalDialog extends Dialog {
         _sendAnalyticsEvent();
       } else {
         print('analytics == null');
+        _sendAnalyticsEvent();
       }
       children.add(_buildTitleContainer());
-//      children.add(_buildContentImage());
-      children.add(_buildImageShadow());
-      children.add(_buildScrollableText());
+      children.add(_buildShadow());
+      children.add(_buildScrollableSection());
     }
-
-//    if (actions != null) {
-//      children.add(new ButtonTheme.bar(
-//        child: new ButtonBar(
-//          children: actions,
-//        ),
-//      ));
-//    }
 
     Widget dialogChild = Container(
       width: MediaQuery.of(context).size.width*1.0,
@@ -76,10 +69,6 @@ class ModalDialog extends Dialog {
     if (label != null)
       dialogChild =
           new Semantics(namesRoute: true, label: label, child: dialogChild);
-
-//    return new Dialog(
-//      child: dialogChild,
-//    );
 
     RoundedRectangleBorder shape = RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
@@ -139,22 +128,41 @@ class ModalDialog extends Dialog {
     return new GestureDetector(
         onTap: (){
 //          print("Image clicked");
-          Navigator.push(context, MaterialPageRoute(builder: (context) => ImageDetailView()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ImageDetailView(artwork: this.artwork,)));
         },
-        child: new Container(
-          child: artwork.image,
-        )
+//        child: new Container(
+//          padding: noPadding,
+//          height: MediaQuery.of(context).size.height * 0.50,
+//          child: FadeInImage(
+//            placeholder: MemoryImage(kTransparentImage),
+//            image: AssetImage(artwork.image),
+//          ),
+//        )
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.50,
+        child: Stack(
+          children: <Widget>[
+            Center(child: CircularProgressIndicator()),
+            Center(
+              child: FadeInImage(
+                placeholder: MemoryImage(kTransparentImage),
+                image: AssetImage(artwork.image),
+              ),
+            ),
+          ],
+        ),
+      )
     );
   }
 
-  Container _buildImageShadow() {
+  Container _buildShadow() {
     return new Container(
       color: artwork.color.withAlpha(50),
       height: 1.0,
     );
   }
 
-  Expanded _buildScrollableText() {
+  Expanded _buildScrollableSection() {
     return new Expanded(
       flex: 1,
       child: new SingleChildScrollView(
@@ -173,7 +181,7 @@ class ModalDialog extends Dialog {
 
   Container _buildSubtitle(){
     return Container(
-      padding: EdgeInsets.only(bottom: 16.0),
+      padding: EdgeInsets.only(top: 16.0,bottom: 16.0),
       child: Text(
         artwork.subtitle,
         textAlign: TextAlign.center,
@@ -221,12 +229,22 @@ class ModalDialog extends Dialog {
 */
 
   Future<void> _sendAnalyticsEvent() async {
-    await analytics.logEvent(
-      name: 'modal_dialog_open',
-      parameters: <String, dynamic>{
-        'artworkTitle': artwork.title,
-      },
-    );
+    if (analytics != null){
+      await analytics.logEvent(
+        name: 'modal_dialog_open',
+        parameters: <String, dynamic>{
+          'artworkTitle': artwork.title,
+        },
+      );
+    } else {
+      FirebaseAnalytics a = FirebaseAnalytics();
+      await a.logEvent(
+        name: 'modal_dialog_open',
+        parameters: <String, dynamic>{
+          'artworkTitle': artwork.title,
+        },
+      );
+    }
     print('logEvent succeeded');
   }
 
@@ -234,16 +252,26 @@ class ModalDialog extends Dialog {
 
 class ImageDetailView extends StatelessWidget {
 
+  final Artwork artwork;
+
+  ImageDetailView({Key key, @required this.artwork}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(""),
         backgroundColor: Colors.transparent,
+        bottomOpacity: 0.0,
       ),
       body: Center(
         child: PhotoView(
-          imageProvider: AssetImage("assets/superbia.jpg"),
+          loadingChild: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(artwork.color),),
+          imageProvider: AssetImage(artwork.image),
+          minScale: 0.1,
+          gaplessPlayback: true,
+          initialScale: 0.25,
         ),
       ),
     );

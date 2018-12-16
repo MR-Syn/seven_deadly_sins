@@ -196,16 +196,6 @@ class _HomePageState extends State<HomePage> {
       transitionDuration: const Duration(milliseconds: 300),
       transitionBuilder: _buildMaterialDialogTransitions,
     );
-//    showDialog(
-//      context: context,
-//      builder: (BuildContext context) {
-//        return ModalDialog(
-//          analytics: analytics,
-//          context: context,
-//          artwork: _selectArtwork(),
-//        );
-//      }
-//    );
   }
 
   Widget _buildMaterialDialogTransitions(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
