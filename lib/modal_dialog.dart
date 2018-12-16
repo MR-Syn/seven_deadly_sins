@@ -52,7 +52,7 @@ class ModalDialog extends Dialog {
         print('analytics == null');
       }
       children.add(_buildTitleContainer());
-      children.add(_buildContentImage());
+//      children.add(_buildContentImage());
       children.add(_buildImageShadow());
       children.add(_buildScrollableText());
     }
@@ -120,7 +120,7 @@ class ModalDialog extends Dialog {
     final TextStyle dialogTitleTextTheme = new TextStyle(
       fontSize: 32.0,
       fontWeight: FontWeight.normal,
-      fontStyle: FontStyle.italic,
+      fontStyle: FontStyle.normal,
       color: artwork.color,
     );
     return new Container(
@@ -138,7 +138,7 @@ class ModalDialog extends Dialog {
   GestureDetector _buildContentImage() {
     return new GestureDetector(
         onTap: (){
-          print("Image clicked");
+//          print("Image clicked");
           Navigator.push(context, MaterialPageRoute(builder: (context) => ImageDetailView()));
         },
         child: new Container(
@@ -161,6 +161,7 @@ class ModalDialog extends Dialog {
         padding: modalContentPadding,
         child: new Column(
           children: <Widget>[
+            _buildContentImage(),
             _buildSubtitle(),
             _buildDefinition(),
             _buildDescription()

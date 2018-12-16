@@ -27,7 +27,9 @@ class _HomePageState extends State<HomePage> {
   final FirebaseAnalyticsObserver observer;
   final FirebaseAnalytics analytics;
 
-  String result = "superbia";
+  String result = "";
+  String errorMessage = "";
+  Artwork artwork;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               padding: mediumTopBottomPadding,
               child: _homeSubtitleText(
-                  appSubtitle, redItalicText
+                  appSubtitle, redNormalText
               ),
             ),
             Container(
@@ -99,9 +101,9 @@ class _HomePageState extends State<HomePage> {
   Container _buildHomeImageWidget() {
     return Container(
       decoration: new BoxDecoration(
-          shape: BoxShape.circle,
+          shape: BoxShape.rectangle,
           image: new DecorationImage(
-              image: new AssetImage('assets/logo.jpg'), fit: BoxFit.fill)),
+              image: new AssetImage('assets/logo.png'), fit: BoxFit.fill)),
       height: MediaQuery.of(context).size.height * 0.35,
       width: MediaQuery.of(context).size.height * 0.35,
     );
@@ -117,42 +119,47 @@ class _HomePageState extends State<HomePage> {
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
-          result = "Permesso di accesso alla fotocamera negato";
+          errorMessage = "Permesso di accesso alla fotocamera negato";
         });
         error = true;
       } else {
         setState(() {
-          result = "Errore sconosciuto $ex";
+          errorMessage = "Errore sconosciuto $ex";
         });
         error = true;
       }
     } on FormatException {
       setState(() {
-        result = "Non hai letto nessun codice QR";
+        errorMessage = "Non hai letto nessun codice QR";
       });
-      error = true;
+      error = false;
     } catch (ex) {
       setState(() {
-        result = "Errore sconosciuto $ex";
+        errorMessage = "Errore sconosciuto $ex";
       });
       error = true;
     } finally {
       // $$$ - temporary
-      result = "superbia";
-      if(!error){
+//      result = "superbia";
+      artwork = _selectArtwork();
+      if(artwork == null){
+        error = true;
+        errorMessage = "Il codice scansionato non corrisponde ad un'opera della mostra";
+      }
+      if(!error && artwork != null){
         _showModal();
       } else {
-        _showModal();
-//        showDialog(context: context, builder:(BuildContext context) {
-//          return AlertDialog(
-//            title: Text(
-//              "Errore",
-//              textAlign: TextAlign.center,
-//            ),
-//            content: Text(result),
-//            );
-//          }
-//        );
+//        _showModal();
+        showDialog(context: context, builder:(BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              errorTitle,
+              textAlign: TextAlign.center,
+            ),
+            content: Text(errorMessage),
+            );
+          }
+        );
       }
     }
   }
