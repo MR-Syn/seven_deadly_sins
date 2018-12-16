@@ -12,7 +12,6 @@ class ModalDialog extends Dialog {
     this.actions,
     this.semanticLabel,
     this.context,
-    this.analytics,
     this.artwork
   }) : super(key: key);
 
@@ -37,22 +36,14 @@ class ModalDialog extends Dialog {
   /// [title] if it is not null.  If there is no title, the label will be taken
   /// from [MaterialLocalizations.alertDialogLabel].
   final String semanticLabel;
-
-  final FirebaseAnalytics analytics;
-
+  
   @override
   Widget build(BuildContext context) {
     final List<Widget> children = <Widget>[];
     String label = semanticLabel;
 
     if (artwork != null) {
-      if (analytics != null){
-        print('analytics != null');
-        _sendAnalyticsEvent();
-      } else {
-        print('analytics == null');
-        _sendAnalyticsEvent();
-      }
+      _sendAnalyticsEvent();
       children.add(_buildTitleContainer());
       children.add(_buildShadow());
       children.add(_buildScrollableSection());
@@ -229,23 +220,14 @@ class ModalDialog extends Dialog {
 */
 
   Future<void> _sendAnalyticsEvent() async {
-    if (analytics != null){
-      await analytics.logEvent(
-        name: 'modal_dialog_open',
-        parameters: <String, dynamic>{
-          'artworkTitle': artwork.title,
-        },
-      );
-    } else {
-      FirebaseAnalytics a = FirebaseAnalytics();
-      await a.logEvent(
-        name: 'modal_dialog_open',
-        parameters: <String, dynamic>{
-          'artworkTitle': artwork.title,
-        },
-      );
-    }
-    print('logEvent succeeded');
+    await FirebaseAnalytics().logViewItem(itemId: "modal_dialog", itemName: artwork.title, itemCategory: "modal_dialog");
+//    await FirebaseAnalytics().logEvent(
+//      name: 'modal_dialog_open',
+//      parameters: <String, dynamic>{
+//        'artworkTitle': artwork.title,
+//      },
+//    );
+//    print('logEvent succeeded');
   }
 
 }
@@ -275,6 +257,20 @@ class ImageDetailView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /*
+* Analytics !!!
+*/
+
+  Future<void> _sendAnalyticsEvent() async {
+    await FirebaseAnalytics().logViewItem(itemId: "photo_view", itemName: artwork.title, itemCategory: "photo_view");
+//    await FirebaseAnalytics().logEvent(
+//      name: 'photo_view_open',
+//      parameters: <String, dynamic>{
+//        'artworkTitle': artwork.title,
+//      },
+//    );
   }
 
 }

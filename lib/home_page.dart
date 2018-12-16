@@ -176,7 +176,6 @@ class _HomePageState extends State<HomePage> {
           accentColor: _selectArtwork().color,
         );
         final Widget pageChild = ModalDialog(
-          analytics: analytics,
           context: context,
           artwork: _selectArtwork(),
         );
