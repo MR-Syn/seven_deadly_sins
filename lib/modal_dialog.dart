@@ -36,7 +36,7 @@ class ModalDialog extends Dialog {
   /// [title] if it is not null.  If there is no title, the label will be taken
   /// from [MaterialLocalizations.alertDialogLabel].
   final String semanticLabel;
-  
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> children = <Widget>[];
@@ -251,9 +251,9 @@ class ImageDetailView extends StatelessWidget {
         child: PhotoView(
           loadingChild: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(artwork.color),),
           imageProvider: AssetImage(artwork.image),
-          minScale: 0.1,
+          minScale: 0.25,
           gaplessPlayback: true,
-          initialScale: 0.25,
+          initialScale: 1.0,
         ),
       ),
     );
@@ -264,7 +264,7 @@ class ImageDetailView extends StatelessWidget {
 */
 
   Future<void> _sendAnalyticsEvent() async {
-    await FirebaseAnalytics().logViewItem(itemId: "photo_view", itemName: artwork.title, itemCategory: "photo_view");
+    await FirebaseAnalytics().logViewItem(itemId: "photo_view_ID", itemName: "item_name_"+artwork.title, itemCategory: "photo_view_category");
 //    await FirebaseAnalytics().logEvent(
 //      name: 'photo_view_open',
 //      parameters: <String, dynamic>{

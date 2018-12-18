@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:core';
+import 'dart:ui' as ui;
 
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
@@ -224,50 +225,53 @@ class _HomePageState extends State<HomePage> {
   ///
   Artwork _selectArtwork() {
     Artwork artwork;
-    switch (result){
-      case superbiaCode:
+    if (result.contains("artespettacolomodena")) {
+      if (result.contains("superbia")){
         artwork = superbia;
-        break;
-      case accidiaCode:
+      } else if (result.contains("accidia")){
         artwork = accidia;
-        break;
-      case iraCode:
+      } else if (result.contains("ira")){
         artwork = ira;
-        break;
-      case golaCode:
+      } else if (result.contains("gola")){
         artwork = gola;
-        break;
-      case lussuriaCode:
+      } else if (result.contains("lussuria")){
         artwork = lussuria;
-        break;
-      case avariziaCode:
+      } else if (result.contains("avarizia")){
         artwork = avarizia;
-        break;
-      case invidiaCode:
+      } else if (result.contains("invidia")){
         artwork = invidia;
-        break;
-      default:
+      } else {
         artwork = null;
-        break;
+      }
+    } else {
+      artwork = null;
     }
+//    switch (result){
+//      case superbiaCode:
+//        artwork = superbia;
+//        break;
+//      case accidiaCode:
+//        artwork = accidia;
+//        break;
+//      case iraCode:
+//        artwork = ira;
+//        break;
+//      case golaCode:
+//        artwork = gola;
+//        break;
+//      case lussuriaCode:
+//        artwork = lussuria;
+//        break;
+//      case avariziaCode:
+//        artwork = avarizia;
+//        break;
+//      case invidiaCode:
+//        artwork = invidia;
+//        break;
+//      default:
+//        artwork = null;
+//        break;
+//    }
     return artwork;
   }
-
-/*
-* Analytics !!!
-*/
-
-  Future<void> _sendAnalyticsEvent() async {
-    await analytics.logEvent(
-      name: 'test_event',
-      parameters: <String, dynamic>{
-        'string': 'string',
-        'int': 42,
-        'long': 12345678910,
-        'double': 42.0,
-        'bool': true,
-      },
-    );
-  }
-
 }

@@ -191,7 +191,7 @@ final invidiaImage = "assets/invidia.jpg";
 final avariziaImage = "assets/avarizia.jpg";
 final lussuriaImage = "assets/lussuria.png";
 final accidiaImage = "assets/accidia.jpg";
-final superbiaImage = "assets/superbia.jpg";
+final superbiaImage = "assets/superbia_new.jpg";
 final iraImage = "assets/ira.jpg";
 
 /*

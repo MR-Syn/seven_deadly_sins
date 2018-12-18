@@ -1,5 +1,6 @@
 name: seven_deadly_sins
 description: Seven Deadly Sins Exhibition
+version: 1.0.1+2
 
 dependencies:
   flutter:
