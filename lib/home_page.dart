@@ -235,20 +235,20 @@ class _HomePageState extends State<HomePage> {
   ///
   Artwork _selectArtwork() {
     Artwork artwork;
-    if (result.contains("artespettacolomodena")) {
-      if (result.contains("superbia")){
+    if (result.contains(appWebsite)) {
+      if (result.contains(superbiaCode)){
         artwork = superbia;
-      } else if (result.contains("accidia")){
+      } else if (result.contains(accidiaCode)){
         artwork = accidia;
-      } else if (result.contains("ira")){
+      } else if (result.contains(iraCode)){
         artwork = ira;
-      } else if (result.contains("gola")){
+      } else if (result.contains(golaCode)){
         artwork = gola;
-      } else if (result.contains("lussuria")){
+      } else if (result.contains(lussuriaCode)){
         artwork = lussuria;
-      } else if (result.contains("avarizia")){
+      } else if (result.contains(avariziaCode)){
         artwork = avarizia;
-      } else if (result.contains("invidia")){
+      } else if (result.contains(invidiaCode)){
         artwork = invidia;
       } else {
         artwork = null;

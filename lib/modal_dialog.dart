@@ -121,16 +121,8 @@ class ModalDialog extends Dialog {
 //          print("Image clicked");
           Navigator.push(context, MaterialPageRoute(builder: (context) => ImageDetailView(artwork: this.artwork,)));
         },
-//        child: new Container(
-//          padding: noPadding,
-//          height: MediaQuery.of(context).size.height * 0.50,
-//          child: FadeInImage(
-//            placeholder: MemoryImage(kTransparentImage),
-//            image: AssetImage(artwork.image),
-//          ),
-//        )
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.50,
+        height: MediaQuery.of(context).size.height * (artwork.isHorizontal==false ? 0.5 : 0.3),
         child: Stack(
           children: <Widget>[
             Center(child: CircularProgressIndicator()),
@@ -251,9 +243,9 @@ class ImageDetailView extends StatelessWidget {
         child: PhotoView(
           loadingChild: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(artwork.color),),
           imageProvider: AssetImage(artwork.image),
-          minScale: 0.25,
+          minScale: 0.5,
           gaplessPlayback: true,
-          initialScale: 1.0,
+          initialScale: 0.8,
         ),
       ),
     );
@@ -265,12 +257,6 @@ class ImageDetailView extends StatelessWidget {
 
   Future<void> _sendAnalyticsEvent() async {
     await FirebaseAnalytics().logViewItem(itemId: "photo_view_ID", itemName: "item_name_"+artwork.title, itemCategory: "photo_view_category");
-//    await FirebaseAnalytics().logEvent(
-//      name: 'photo_view_open',
-//      parameters: <String, dynamic>{
-//        'artworkTitle': artwork.title,
-//      },
-//    );
   }
 
 }

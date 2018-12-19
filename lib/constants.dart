@@ -95,12 +95,13 @@ const EdgeInsets modalTitlePadding = EdgeInsets.fromLTRB(6.0, 12.0, 6.0, 12.0);
 * Strings
 */
 
+const String appWebsite = "artespettacolomodena.it";
 const String appTitle = "Seven Deadly Sins";
 const String appSubtitle = "Manipolazione dell'uomo";
 const String loremIpsum = """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.""";
 const String fabText = "Scansiona";
 
-const String superbiaCode = "https://www.artespettacolomodena.it/superbia/";
+const String superbiaCode = "/superbia";
 const String superbiaTitle = "Superbia";
 const String superbiaSubtitle = "Convinzione irremovibile di essere superiori, a chiunque altro";
 const String superbiaDefinition = "Superbia: s. f. [dal lat. superbia, der. di superbus «superbo»]";
@@ -110,7 +111,7 @@ Nel superbo insorge spesso la volontà di conquistare, esclusivamente per se ste
 
 Nel Cristianesimo, il peccato di superbia è considerato il peggiore dei sette vizi capitali, poiché radice di ogni altro peccato e perché, quando portato ai suoi massimi estremi, porta il superbo a ritenersi addirittura eguale o superiore a Dio, con il conseguente disprezzo del Suo Amore e del Suo Ordine. È il peccato di Lucifero, l'origine della sua caduta dal Cielo.""";
 
-const String iraCode = "https://www.artespettacolomodena.it/ira/";
+const String iraCode = "/ira";
 const String iraTitle = "Ira";
 const String iraSubtitle = "Desiderio irrefrenabile di vendicare violentemente un torto subito";
 const String iraDefinition = "Ira: s. f. [lat. īra]";
@@ -120,7 +121,7 @@ L'iracondo desidera una vendetta che mostrerà in modo attivo o passivo. Essa, n
 
 L'iracondo può infatti provare una profonda avversione non solo verso qualcosa o qualcuno, ma in alcuni casi anche verso se stesso.""";
 
-const String lussuriaCode = "https://www.artespettacolomodena.it/lussuria/";
+const String lussuriaCode = "/lussuria";
 const String lussuriaTitle = "Lussuria";
 const String lussuriaSubtitle = "Desiderio irrefrenabile del piacere sessuale fine a sé stesso";
 const String lussuriaDefinition = "Lussuria: s. f. [dal lat. luxuria «rigoglio, eccesso, lascivia, sfrenatezza», der. di luxus -us «lusso»]";
@@ -134,7 +135,7 @@ Su un livello più generale, la lussuria svaluta l'eterna attrazione tra uomo e 
 
 Nel Cristianesimo, il desiderio sessuale non è malvagio di per sé poiché rientra nell'Ordine divino, tuttavia quando tale desiderio viene separato dall'amore di Dio e unito soltanto all'amore di sé, diventa lussuria, peccato e vizio.""";
 
-const String accidiaCode = "https://www.artespettacolomodena.it/accidia/";
+const String accidiaCode = "/accidia";
 const String accidiaTitle = "Accidia";
 const String accidiaSubtitle = "Male esistenziale, inerzia nel vivere e nel compiere opere di bene";
 const String accidiaDefinition = "Accidia: s. f. [dal gr. ἀκηδία «negligenza», comp. di ἀ- priv. e κ ῆ δος «cura», assunto nel lat. tardo come acedia e acidia";
@@ -144,7 +145,7 @@ L'accidia è strettamente legata alla noia, poiché nascono entrambe da uno stat
 
 Nel Cristianesimo è l'avversione o indolenza all'operare il bene dovuta alla noia del divino e al disgusto per ciò che è spirituale. L'accidia indica lo stato di una persona la cui fede vacilla, o è andata persa.""";
 
-const String avariziaCode = "https://www.artespettacolomodena.it/avarizia/";
+const String avariziaCode = "/avarizia";
 const String avariziaTitle = "Avarizia";
 const String avariziaSubtitle = "Attaccamento eccessivo alle ricchezze, senza volersene separare per alcun motivo";
 const String avariziaDefinition = "Avarizia: s. f. [dal lat. avaritia, der. di avarus «avaro»]";
@@ -158,7 +159,7 @@ La frenesia dell'avaro lo porta a rivestirsi di tutto, a non lasciare niente agl
 
 Nel Cristianesimo l'avarizia, proprio perché porta chi ne è travolto a mettere le ricchezze al di sopra di tutto, è considerata una forma di idolatria: il denaro prende il posto di Dio.""";
 
-const String invidiaCode = "https://www.artespettacolomodena.it/invidia/";
+const String invidiaCode = "/invidia";
 const String invidiaTitle = "Invidia";
 const String invidiaSubtitle = "Tristezza per il bene altrui, percepito come male proprio";
 const String invidiaDefinition = "Invidia: s. f. [dal lat. invidia, der. di invĭdus: v. invido]";
@@ -170,7 +171,7 @@ L'invidioso prova risentimento e astio per la felicità, la prosperità e il ben
 
 Nel Cristianesimo, l'invidia è un vizio capitale perché, come la superbia, porta all'eccessivo amore di sé a scapito dell'amore fraterno e dell'amore per Dio, creando così una grande possibilità per l'azione del male.""";
 
-const String golaCode = "https://www.artespettacolomodena.it/gola/";
+const String golaCode = "/gola";
 const String golaTitle = "Gola";
 const String golaSubtitle = "Abbandono ed esagerazione nei piaceri della tavola, e non solo";
 const String golaDefinition = "Gola: s. f. [lat. gŭla]";
@@ -189,7 +190,7 @@ final logoImage = "assets/logo.jpg";
 final golaImage = "assets/gola.jpg";
 final invidiaImage = "assets/invidia.jpg";
 final avariziaImage = "assets/avarizia.jpg";
-final lussuriaImage = "assets/lussuria.png";
+final lussuriaImage = "assets/lussuria.jpg";
 final accidiaImage = "assets/accidia.jpg";
 final superbiaImage = "assets/superbia.jpg";
 final iraImage = "assets/ira.jpg";
@@ -199,67 +200,74 @@ final iraImage = "assets/ira.jpg";
 */
 
 Artwork superbia = Artwork(
-    superbiaTitle,
-    superbiaSubtitle,
-    superbiaDefinition,
-    superbiaDescription,
-    superbiaColor,
-    superbiaImage
+  superbiaTitle,
+  superbiaSubtitle,
+  superbiaDefinition,
+  superbiaDescription,
+  superbiaColor,
+  superbiaImage,
+  false
 );
 
 Artwork invidia = Artwork(
-    invidiaTitle,
-    invidiaSubtitle,
-    invidiaDefinition,
-    invidiaDescription,
-    invidiaColor,
-    invidiaImage
+  invidiaTitle,
+  invidiaSubtitle,
+  invidiaDefinition,
+  invidiaDescription,
+  invidiaColor,
+  invidiaImage,
+  true
 );
 
 Artwork avarizia = Artwork(
-    avariziaTitle,
-    avariziaSubtitle,
-    avariziaDefinition,
-    avariziaDescription,
-    avariziaColor,
-    avariziaImage
-    );
+  avariziaTitle,
+  avariziaSubtitle,
+  avariziaDefinition,
+  avariziaDescription,
+  avariziaColor,
+  avariziaImage,
+  true
+);
 
 Artwork lussuria = Artwork(
-    lussuriaTitle,
-    lussuriaSubtitle,
-    lussuriaDefinition,
-    lussuriaDescription,
-    lussuriaColor,
-    lussuriaImage
-    );
+  lussuriaTitle,
+  lussuriaSubtitle,
+  lussuriaDefinition,
+  lussuriaDescription,
+  lussuriaColor,
+  lussuriaImage,
+  true
+);
 
 Artwork gola = Artwork(
-    golaTitle,
-    golaSubtitle,
-    golaDefinition,
-    golaDescription,
-    golaColor,
-    golaImage
-    );
+  golaTitle,
+  golaSubtitle,
+  golaDefinition,
+  golaDescription,
+  golaColor,
+  golaImage,
+  false
+);
 
 Artwork ira = Artwork(
-    iraTitle,
-    iraSubtitle,
-    iraDefinition,
-    iraDescription,
-    iraColor,
-    iraImage
-    );
+  iraTitle,
+  iraSubtitle,
+  iraDefinition,
+  iraDescription,
+  iraColor,
+  iraImage,
+  false
+);
 
 Artwork accidia = Artwork(
-    accidiaTitle,
-    accidiaSubtitle,
-    accidiaDefinition,
-    accidiaDescription,
-    accidiaColor,
-    accidiaImage
-    );
+  accidiaTitle,
+  accidiaSubtitle,
+  accidiaDefinition,
+  accidiaDescription,
+  accidiaColor,
+  accidiaImage,
+  true
+);
 
 /*
 * Functions
@@ -277,14 +285,16 @@ class Artwork {
   String description;
   Color color;
   String image;
+  bool isHorizontal;
 
 
-  Artwork(
-      this.title,
-      this.subtitle,
-      this.definition,
-      this.description,
-      this.color,
-      this.image
-      );
+Artwork(
+    this.title,
+    this.subtitle,
+    this.definition,
+    this.description,
+    this.color,
+    this.image,
+    this.isHorizontal,
+  );
 }
