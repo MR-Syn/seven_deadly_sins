@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:core';
-import 'dart:ui' as ui;
 
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +28,6 @@ class _HomePageState extends State<HomePage> {
   final FirebaseAnalytics analytics;
 
   String result = "";
-  String errorMessage = "";
   Artwork artwork;
 
   @override
@@ -110,60 +108,72 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  ///
+  /// Function that handles the QR Code scanning, with error cases managed
+  ///
   Future _scanQR() async {
     bool error = false;
+    bool hasScanned = false;
+    String errorMessage = "";
+
     try {
       String qrResult = await BarcodeScanner.scan();
       setState(() {
         result = qrResult;
       });
+      hasScanned = true;
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
-        setState(() {
-          errorMessage = "Permesso di accesso alla fotocamera negato";
-        });
+        errorMessage = "Permesso di accesso alla fotocamera negato";
+        hasScanned = false;
         error = true;
+        _showErrorAlert(errorMessage);
       } else {
         setState(() {
           errorMessage = "Errore sconosciuto $ex";
         });
+        hasScanned = false;
         error = true;
+        _showErrorAlert(errorMessage);
       }
     } on FormatException {
-      setState(() {
-        errorMessage = "Non hai letto nessun codice QR";
-      });
+      errorMessage = "";
+      hasScanned = false;
       error = false;
     } catch (ex) {
-      setState(() {
-        errorMessage = "Errore sconosciuto $ex";
-      });
+      errorMessage = "Errore sconosciuto $ex. Contattare il fornitore del software per maggiori informazioni.";
       error = true;
+      _showErrorAlert(errorMessage);
     } finally {
-      // $$$ - temporary
-//      result = "superbia";
       artwork = _selectArtwork();
       if(artwork == null){
-        error = true;
-        errorMessage = "Il codice scansionato non corrisponde ad un'opera della mostra";
+        if (!error && hasScanned) {
+          errorMessage = "Il codice scansionato: \n\n" + result + "\n\n non corrisponde ad un'opera della mostra";
+          _showErrorAlert(errorMessage);
+        }
       }
-      if(!error && artwork != null){
+      if(hasScanned && artwork != null){
         _showModal();
-      } else {
-//        _showModal();
-        showDialog(context: context, builder:(BuildContext context) {
-          return AlertDialog(
-            title: Text(
-              errorTitle,
-              textAlign: TextAlign.center,
-            ),
-            content: Text(errorMessage),
-            );
-          }
-        );
       }
     }
   }
+
+  ///
+  /// Show error alert
+  ///
+  void _showErrorAlert(String errorMessage){
+    _sendErrorEvent();
+    showDialog(context: context, builder:(BuildContext context) {
+      return AlertDialog(
+        title: Text(
+          errorTitle,
+          textAlign: TextAlign.center,
+        ),
+        content: Text(errorMessage),
+      );
+    });
+  }
+
 
   ///
   /// Shows modal with artwork information
@@ -246,32 +256,15 @@ class _HomePageState extends State<HomePage> {
     } else {
       artwork = null;
     }
-//    switch (result){
-//      case superbiaCode:
-//        artwork = superbia;
-//        break;
-//      case accidiaCode:
-//        artwork = accidia;
-//        break;
-//      case iraCode:
-//        artwork = ira;
-//        break;
-//      case golaCode:
-//        artwork = gola;
-//        break;
-//      case lussuriaCode:
-//        artwork = lussuria;
-//        break;
-//      case avariziaCode:
-//        artwork = avarizia;
-//        break;
-//      case invidiaCode:
-//        artwork = invidia;
-//        break;
-//      default:
-//        artwork = null;
-//        break;
-//    }
     return artwork;
+  }
+
+
+/*
+* Analytics !!!
+*/
+
+  Future<void> _sendErrorEvent() async {
+    await FirebaseAnalytics().logViewItem(itemId: "scan_error_ID", itemName: "scan_error", itemCategory: "scan_error_category");
   }
 }
