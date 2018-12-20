@@ -258,7 +258,6 @@ class _HomePageState extends State<HomePage> {
     } else {
       artwork = null;
     }
-    artwork = avarizia ;
   return artwork;
   }
 
