@@ -146,6 +146,8 @@ class _HomePageState extends State<HomePage> {
       _showErrorAlert(errorMessage);
     } finally {
       artwork = _selectArtwork();
+      hasScanned = true;
+
       if(artwork == null){
         if (!error && hasScanned) {
           errorMessage = "Il codice scansionato: \n\n" + result + "\n\n non corrisponde ad un'opera della mostra";
@@ -256,7 +258,8 @@ class _HomePageState extends State<HomePage> {
     } else {
       artwork = null;
     }
-    return artwork;
+    artwork = avarizia ;
+  return artwork;
   }
 
 

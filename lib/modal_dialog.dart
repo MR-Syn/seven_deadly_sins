@@ -243,9 +243,10 @@ class ImageDetailView extends StatelessWidget {
         child: PhotoView(
           loadingChild: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(artwork.color),),
           imageProvider: AssetImage(artwork.image),
-          minScale: 0.5,
+          minScale: 0.45,
           gaplessPlayback: true,
-          initialScale: 0.8,
+          initialScale: 0.65,
+          maxScale: 0.75,
         ),
       ),
     );

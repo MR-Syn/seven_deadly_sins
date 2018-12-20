@@ -28,12 +28,12 @@ const Color alertBackgroundColor = Color.fromARGB(255, 10, 10, 10);
 const Color softRed = Color.fromARGB(255, 242, 114, 104);
 
 const Color superbiaColor = Color.fromARGB(255, 239, 179, 14);
-const Color invidiaColor = Color.fromARGB(255, 239, 179, 14);
-const Color lussuriaColor = Color.fromARGB(255, 239, 179, 14);
-const Color avariziaColor = Color.fromARGB(255, 239, 179, 14);
+const Color invidiaColor = Color.fromARGB(255, 102, 153, 102);
+const Color lussuriaColor = Color.fromARGB(255, 172, 28, 78);
+const Color avariziaColor = Color.fromARGB(255, 238, 144, 4);
 const Color iraColor = Color.fromARGB(255, 237, 237, 237);
-const Color golaColor = Color.fromARGB(255, 239, 179, 14);
-const Color accidiaColor = Color.fromARGB(255, 239, 179, 14);
+const Color golaColor = Color.fromARGB(255, 189, 182, 162);
+const Color accidiaColor = Color.fromARGB(255, 153, 51, 51);
 /*
 * TextStyles
 */
