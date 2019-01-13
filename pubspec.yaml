@@ -1,23 +1,21 @@
 name: seven_deadly_sins
 description: Seven Deadly Sins Exhibition
-version: 1.0.3+4
+version: 1.1.0+7
 
 dependencies:
   flutter:
     sdk: flutter
 
-  firebase_core: ^0.2.5
-  firebase_analytics: ^1.0.4
+  firebase_core: ^0.2.5+1
+  firebase_analytics: ^1.1.0
+  flutter_crashlytics: ^0.2.0
 
   transparent_image: ^0.1.0
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  url_launcher: ^4.0.3
+  font_awesome_flutter: ^8.2.0
+  share: ^0.5.3
   cupertino_icons: ^0.1.2
-  barcode_scan: ^0.0.4
-  photo_view: ^0.1.0
-
+  photo_view: ^0.1.2
 
 dev_dependencies:
   flutter_test:
@@ -51,7 +49,6 @@ flutter:
     - assets/2.0x/
     - assets/3.0x/
     - assets/4.0x/
-
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

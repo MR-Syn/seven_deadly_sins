@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 final ThemeData appThemeData = ThemeData(
                                       brightness: Brightness.dark,
 
-                                      primaryColor: dialogBackgroundColor,
+                                      primaryColor: darkGrey,
                                       primaryColorBrightness: Brightness.dark,
                                       primaryColorDark: Colors.black,
 
@@ -23,7 +23,7 @@ final ThemeData appThemeData = ThemeData(
 */
 
 const Color homeBackgroundColor = Colors.black;
-const Color dialogBackgroundColor = Color.fromARGB(255, 30, 30, 30);
+const Color darkGrey = Color.fromARGB(255, 30, 30, 30);
 const Color alertBackgroundColor = Color.fromARGB(255, 10, 10, 10);
 const Color softRed = Color.fromARGB(255, 242, 114, 104);
 
@@ -34,6 +34,9 @@ const Color avariziaColor = Color.fromARGB(255, 238, 144, 4);
 const Color iraColor = Color.fromARGB(255, 237, 237, 237);
 const Color golaColor = Color.fromARGB(255, 189, 182, 162);
 const Color accidiaColor = Color.fromARGB(255, 153, 51, 51);
+const Color facebookColor = Color.fromARGB(255, 59, 89, 152);
+const Color instagramColor = Color.fromARGB(255, 233, 89, 80);
+const Color linkedinColor = Color.fromARGB(255, 0, 123, 182);
 /*
 * TextStyles
 */
@@ -95,11 +98,26 @@ const EdgeInsets modalTitlePadding = EdgeInsets.fromLTRB(6.0, 12.0, 6.0, 12.0);
 * Strings
 */
 
-const String appWebsite = "artespettacolomodena.it";
+const String website = "https://www.059mo.it";
+const String phone = "tel:+393291892234";
+const String email = "mailto:zer059advertising@gmail.com";
+const String facebook = "https://www.facebook.com/Zer059Advertising";
+const String instagram = "https://www.instagram.com/059advertising/";
+const String linkedin = "https://it.linkedin.com/company/zer059---advertising";
+
 const String appTitle = "Seven Deadly Sins";
 const String appSubtitle = "Manipolazione dell'uomo";
 const String loremIpsum = """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.""";
 const String fabText = "Scansiona";
+
+const String aboutPageTitle = "Informazioni";
+const String aboutContentTitle = "059";
+const String aboutContentSubtitle = "Arte, Comunicazione e Spettacolo";
+const String aboutContent = """Siamo un gruppo di professionisti modenesi appassionati di comunicazione, con un’idea comune: mostrare la nostra creatività coniugandola alle esigenze dei nostri clienti, per i quali curiamo lo sviluppo dei progetti dall’ideazione al prodotto finale.
+
+Ci occupiamo di tutto ciò che riguarda l’ambito comunicativo, dalla creazione e registrazione di marchi e loghi alla fotografia con elaborazione digitale, passando per la tipografia e la progettazione e realizzazione di siti web e applicazioni mobile.""";
+const String aboutContentThanks = "Si ringrazia Mattia Rizzo per la realizzazione di questa app";
+const String shareText = "Ciao, dai un'occhiata all'app Seven Deadly Sins https://play.google.com/store/apps/details?id=com.mrsyn.sevendeadlysins o visita il nostro sito https://www.059mo.it";
 
 const String superbiaCode = "/superbia";
 const String superbiaTitle = "Superbia";
@@ -186,7 +204,7 @@ const String errorContent = "Errore";
 * Assets
 */
 
-final logoImage = "assets/logo.jpg";
+final logoImage = "assets/logo_059.jpg";
 final golaImage = "assets/gola.jpg";
 final invidiaImage = "assets/invidia.jpg";
 final avariziaImage = "assets/avarizia.jpg";
@@ -194,7 +212,13 @@ final lussuriaImage = "assets/lussuria.jpg";
 final accidiaImage = "assets/accidia.jpg";
 final superbiaImage = "assets/superbia.jpg";
 final iraImage = "assets/ira.jpg";
-
+final golaImageLQ = "assets/blurred/gola.jpg";
+final invidiaImageLQ = "assets/blurred/invidia.jpg";
+final avariziaImageLQ = "assets/blurred/avarizia.jpg";
+final lussuriaImageLQ = "assets/blurred/lussuria.jpg";
+final accidiaImageLQ = "assets/blurred/accidia.jpg";
+final superbiaImageLQ = "assets/blurred/superbia.jpg";
+final iraImageLQ = "assets/blurred/ira.jpg";
 /*
 *  Artworks
 */
@@ -206,6 +230,7 @@ Artwork superbia = Artwork(
   superbiaDescription,
   superbiaColor,
   superbiaImage,
+  superbiaImageLQ,
   false
 );
 
@@ -216,6 +241,7 @@ Artwork invidia = Artwork(
   invidiaDescription,
   invidiaColor,
   invidiaImage,
+  invidiaImageLQ,
   true
 );
 
@@ -226,6 +252,7 @@ Artwork avarizia = Artwork(
   avariziaDescription,
   avariziaColor,
   avariziaImage,
+  avariziaImageLQ,
   true
 );
 
@@ -236,6 +263,7 @@ Artwork lussuria = Artwork(
   lussuriaDescription,
   lussuriaColor,
   lussuriaImage,
+  lussuriaImageLQ,
   true
 );
 
@@ -246,6 +274,7 @@ Artwork gola = Artwork(
   golaDescription,
   golaColor,
   golaImage,
+  golaImageLQ,
   false
 );
 
@@ -256,6 +285,7 @@ Artwork ira = Artwork(
   iraDescription,
   iraColor,
   iraImage,
+  iraImageLQ,
   false
 );
 
@@ -266,6 +296,7 @@ Artwork accidia = Artwork(
   accidiaDescription,
   accidiaColor,
   accidiaImage,
+  accidiaImageLQ,
   true
 );
 
@@ -285,6 +316,7 @@ class Artwork {
   String description;
   Color color;
   String image;
+  String lowQualityImage;
   bool isHorizontal;
 
 
@@ -295,6 +327,7 @@ Artwork(
     this.description,
     this.color,
     this.image,
+    this.lowQualityImage,
     this.isHorizontal,
   );
 }
