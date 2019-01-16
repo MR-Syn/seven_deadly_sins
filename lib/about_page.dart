@@ -79,6 +79,7 @@ class AboutPage extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Stack(
+        alignment: Alignment.center,
         children: <Widget>[
           Center(child: CircularProgressIndicator()),
           Center(

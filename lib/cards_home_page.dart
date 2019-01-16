@@ -11,7 +11,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 
 class CardsHomePage extends StatefulWidget {
-  CardsHomePage({Key key, this.title, this.analytics, this.observer})
+  CardsHomePage({Key key, this.title, this.analytics, this.observer,})
       : super(key: key);
 
   final String title;
@@ -46,12 +46,8 @@ class CardsHomePageState extends State<CardsHomePage> {
   final FirebaseAnalyticsObserver observer;
   final FirebaseAnalytics analytics;
 
-  String result = "";
-  List<Artwork> artworks = [superbia, ira, accidia, gola, lussuria, invidia, avarizia];
-
   @override
   Widget build(BuildContext context) {
-
     // settings
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -90,6 +86,79 @@ class CardsHomePageState extends State<CardsHomePage> {
   }
 
   Widget _buildBody() {
+    List<Artwork> artworks = [
+      Artwork(
+          superbiaTitle,
+          superbiaSubtitle,
+          superbiaDefinition,
+          superbiaDescription,
+          superbiaColor,
+          superbiaImage,
+          superbiaImageLQ,
+          false
+      ),
+      Artwork(
+          iraTitle,
+          iraSubtitle,
+          iraDefinition,
+          iraDescription,
+          iraColor,
+          iraImage,
+          iraImageLQ,
+          false
+      ),
+      Artwork(
+          accidiaTitle,
+          accidiaSubtitle,
+          accidiaDefinition,
+          accidiaDescription,
+          accidiaColor,
+          accidiaImage,
+          accidiaImageLQ,
+          true
+      ),
+      Artwork(
+          golaTitle,
+          golaSubtitle,
+          golaDefinition,
+          golaDescription,
+          golaColor,
+          golaImage,
+          golaImageLQ,
+          false
+      ),
+      Artwork(
+          invidiaTitle,
+          invidiaSubtitle,
+          invidiaDefinition,
+          invidiaDescription,
+          invidiaColor,
+          invidiaImage,
+          invidiaImageLQ,
+          true
+      ),
+      Artwork(
+          lussuriaTitle,
+          lussuriaSubtitle,
+          lussuriaDefinition,
+          lussuriaDescription,
+          lussuriaColor,
+          lussuriaImage,
+          lussuriaImageLQ,
+          true
+      ),
+      Artwork(
+          avariziaTitle,
+          avariziaSubtitle,
+          avariziaDefinition,
+          avariziaDescription,
+          avariziaColor,
+          avariziaImage,
+          avariziaImageLQ,
+          true
+      ),
+    ];
+
     return ListView.builder(
       itemBuilder: (context, position) {
         return GestureDetector(

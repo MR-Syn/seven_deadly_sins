@@ -49,6 +49,7 @@ flutter:
     - assets/2.0x/
     - assets/3.0x/
     - assets/4.0x/
+    - assets/blurred/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

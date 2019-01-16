@@ -204,6 +204,7 @@ const String errorContent = "Errore";
 * Assets
 */
 
+final sevenDeadlySinsLogoImage = "assets/logo.png";
 final logoImage = "assets/logo_059.jpg";
 final golaImage = "assets/gola.jpg";
 final invidiaImage = "assets/invidia.jpg";
@@ -219,86 +220,79 @@ final lussuriaImageLQ = "assets/blurred/lussuria.jpg";
 final accidiaImageLQ = "assets/blurred/accidia.jpg";
 final superbiaImageLQ = "assets/blurred/superbia.jpg";
 final iraImageLQ = "assets/blurred/ira.jpg";
-/*
-*  Artworks
-*/
 
-Artwork superbia = Artwork(
-  superbiaTitle,
-  superbiaSubtitle,
-  superbiaDefinition,
-  superbiaDescription,
-  superbiaColor,
-  superbiaImage,
-  superbiaImageLQ,
-  false
-);
-
-Artwork invidia = Artwork(
-  invidiaTitle,
-  invidiaSubtitle,
-  invidiaDefinition,
-  invidiaDescription,
-  invidiaColor,
-  invidiaImage,
-  invidiaImageLQ,
-  true
-);
-
-Artwork avarizia = Artwork(
-  avariziaTitle,
-  avariziaSubtitle,
-  avariziaDefinition,
-  avariziaDescription,
-  avariziaColor,
-  avariziaImage,
-  avariziaImageLQ,
-  true
-);
-
-Artwork lussuria = Artwork(
-  lussuriaTitle,
-  lussuriaSubtitle,
-  lussuriaDefinition,
-  lussuriaDescription,
-  lussuriaColor,
-  lussuriaImage,
-  lussuriaImageLQ,
-  true
-);
-
-Artwork gola = Artwork(
-  golaTitle,
-  golaSubtitle,
-  golaDefinition,
-  golaDescription,
-  golaColor,
-  golaImage,
-  golaImageLQ,
-  false
-);
-
-Artwork ira = Artwork(
-  iraTitle,
-  iraSubtitle,
-  iraDefinition,
-  iraDescription,
-  iraColor,
-  iraImage,
-  iraImageLQ,
-  false
-);
-
-Artwork accidia = Artwork(
-  accidiaTitle,
-  accidiaSubtitle,
-  accidiaDefinition,
-  accidiaDescription,
-  accidiaColor,
-  accidiaImage,
-  accidiaImageLQ,
-  true
-);
+final List<Artwork> artworksList = [
+  Artwork(
+      superbiaTitle,
+      superbiaSubtitle,
+      superbiaDefinition,
+      superbiaDescription,
+      superbiaColor,
+      superbiaImage,
+      superbiaImageLQ,
+      false
+  ),
+  Artwork(
+      iraTitle,
+      iraSubtitle,
+      iraDefinition,
+      iraDescription,
+      iraColor,
+      iraImage,
+      iraImageLQ,
+      false
+  ),
+  Artwork(
+      accidiaTitle,
+      accidiaSubtitle,
+      accidiaDefinition,
+      accidiaDescription,
+      accidiaColor,
+      accidiaImage,
+      accidiaImageLQ,
+      true
+  ),
+  Artwork(
+      golaTitle,
+      golaSubtitle,
+      golaDefinition,
+      golaDescription,
+      golaColor,
+      golaImage,
+      golaImageLQ,
+      false
+  ),
+  Artwork(
+      invidiaTitle,
+      invidiaSubtitle,
+      invidiaDefinition,
+      invidiaDescription,
+      invidiaColor,
+      invidiaImage,
+      invidiaImageLQ,
+      true
+  ),
+  Artwork(
+      lussuriaTitle,
+      lussuriaSubtitle,
+      lussuriaDefinition,
+      lussuriaDescription,
+      lussuriaColor,
+      lussuriaImage,
+      lussuriaImageLQ,
+      true
+  ),
+  Artwork(
+      avariziaTitle,
+      avariziaSubtitle,
+      avariziaDefinition,
+      avariziaDescription,
+      avariziaColor,
+      avariziaImage,
+      avariziaImageLQ,
+      true
+  ),
+];
 
 /*
 * Functions
