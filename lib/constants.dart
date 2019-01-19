@@ -117,7 +117,7 @@ const String aboutContent = """Siamo un gruppo di professionisti modenesi appass
 
 Ci occupiamo di tutto ciò che riguarda l’ambito comunicativo, dalla creazione e registrazione di marchi e loghi alla fotografia con elaborazione digitale, passando per la tipografia e la progettazione e realizzazione di siti web e applicazioni mobile.""";
 const String aboutContentThanks = "Si ringrazia Mattia Rizzo per la realizzazione di questa app";
-const String shareText = "Ciao, dai un'occhiata all'app Seven Deadly Sins https://play.google.com/store/apps/details?id=com.mrsyn.sevendeadlysins o visita il nostro sito https://www.059mo.it";
+const String shareText = "Ciao, dai un'occhiata all'app Seven Deadly Sins https://play.google.com/store/apps/details?id=com.mrsyn.seven_deadly_sins o visita il nostro sito https://www.059mo.it";
 
 const String superbiaCode = "/superbia";
 const String superbiaTitle = "Superbia";
